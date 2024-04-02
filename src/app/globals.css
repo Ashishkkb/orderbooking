@@ -10,3 +10,9 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-color: white;
 }
+
+.loginimage {
+  width: 100%;
+  max-height: screen;
+}
+
