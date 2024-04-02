@@ -66,7 +66,7 @@ const BinanceSymbolList = () => {
     return (
         <div className="max-h-screen">
             <div className="flex justify-start ml-20">
-                <div className=" bg-white rounded-lg shadow-lg p-4 max-w-[1600px] min-w-[95%]">
+                <div className="  glass shadow-lg p-4 max-w-[1600px] min-w-[95%]">
                     <div className="flex justify-between mb-4">
                         <div className='flex items-center relative'>
                             <div className="text-lg font-semibold mr-2">Symbol:</div>
