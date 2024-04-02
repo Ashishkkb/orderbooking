@@ -49,7 +49,7 @@ const SymbolDropdown = ({
                 />
             </div>
             {searchDropdown && searchQuery.length > 0 && (
-                <div className="absolute bg-white rounded w-200 mt-1 max-h-400 overflow-y-scroll">
+                <div className="absolute bg-white rounded w-200 mt-1 max-h-[400px] overflow-y-scroll">
                     {searchDropdown.map((symbol) => (
                         <div
                             key={symbol.symbol}
