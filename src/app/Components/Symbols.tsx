@@ -65,16 +65,18 @@ const BinanceSymbolList = () => {
 
     return (
         <div className="max-h-screen">
-            <div className="flex justify-start ml-20">
-                <div className="  glass shadow-lg p-4 max-w-[1600px] min-w-[95%]">
+            <div className="flex justify-center">
+                <div className="glass max-w-[1600px] min-w-[95%] flex flex-col gap-6 pb-4">
+                    <div className='text-5xl font-bold'>
+                        Order Book
+                    </div>
                     <div className="flex justify-between mb-4">
                         <div className='flex items-center relative'>
-                            <div className="text-lg font-semibold mr-2">Symbol:</div>
                             <select
                                 id="symbolSelect"
                                 value={selectedSymbol || ''}
                                 onChange={(e) => handleSymbolSelect(e.target.value)}
-                                className="w-400px p-2 border border-gray-300 rounded mr-2"
+                                className="w-[400px] p-2 border border-gray-300 rounded mr-2"
                             >
                                 <option value="">Select a symbol</option>
                                 {symbols.map((symbol) => (
@@ -115,7 +117,7 @@ const BinanceSymbolList = () => {
                     </div>
 
                     {selectedSymbol && (
-                        <div className="overflow-y-auto max-h-[500px]">
+                        <div className="overflow-y-auto max-h-[500px] hide-scrollbar">
                             <h2 className="text-lg font-semibold mb-2">Trades for {selectedSymbol}</h2>
                             <table className="w-full border-collapse border border-gray-300">
                                 <thead>

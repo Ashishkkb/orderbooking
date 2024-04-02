@@ -28,14 +28,13 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-white to-blue-200 bg-opacity-20 min-h-screen flex flex-col gap-10">
-      <nav className="flex justify-between items-center py-4 px-8 bg-white bg-opacity-50 backdrop-blur-md">
-        <div className="text-lg font-semibold text-gray-800">OrderBook</div>
+    <div className="bg-gradient-to-br from-white to-gray-100 bg-opacity-20 min-h-screen flex flex-col gap-10">
+      <nav className="flex justify-end items-center py-4 px-8  bg-opacity-50 backdrop-blur-md">
         <button
           onClick={handleLogout}
-          className="text-gray-800 hover:text-gray-900"
+          className="text-gray-800 hover:text-blue-900"
         >
-          Logout
+          Log Out
         </button>
       </nav>
       <BinanceSymbolList />

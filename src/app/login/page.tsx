@@ -23,7 +23,7 @@ const Login = () => {
     <div className="grid grid-cols-3 gap-4 bg-white shadow-lg min-w-screen h-screen overflow-y-hidden">
       <div className="col-span-1 flex flex-col justify-center">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-4">Login to OrderBook</h2>
-        <p className="text-gray-600 text-center mb-6">Enter your credentials to access your account.</p>
+        <p className="text-gray-400 text-center mb-6 text-sm ">Enter your credentials to access your account.</p>
         <form className="space-y-6 " action="#" method="POST">
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm flex flex-col items-center gap-4">
@@ -35,7 +35,7 @@ const Login = () => {
                 type="text"
                 autoComplete="username"
                 required
-                className="appearance-none rounded-none relative block w-[400px] px-3 py-4 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#EC6062] focus:border-[#EC6062] focus:z-10 sm:text-sm"
+                className="appearance-none rounded-md relative block w-[400px] px-3 py-4 bg-[#EAEEED] border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#EC6062] focus:border-[#EC6062] focus:z-10 sm:text-sm"
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -49,7 +49,7 @@ const Login = () => {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-[400px] px-3 py-4 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#EC6062] focus:border-[#EC6062] focus:z-10 sm:text-sm"
+                className="appearance-none rounded-md relative block w-[400px] px-3 py-4 bg-[#EAEEED] border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-[#EC6062] focus:border-[#EC6062] focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
