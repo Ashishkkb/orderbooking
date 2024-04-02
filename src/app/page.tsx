@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter();
 
   // Check if the logintoken is available
-  const isLoggedIn = typeof window !== 'undefined' && !!localStorage.getItem('logintoken');!!localStorage.getItem('logintoken') || ""
+  const isLoggedIn = typeof window !== 'undefined' && !!localStorage.getItem('logintoken') || ""
 
   // Handle logout
   const handleLogout = () => {
