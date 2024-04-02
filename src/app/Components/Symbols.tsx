@@ -126,7 +126,7 @@ const BinanceSymbolList = () => {
                                             <tr key={trade.id} className="hover:bg-gray-100">
                                                 {Object.values(trade).map((value, index) => (
                                                     <td key={index} className="border border-gray-300 p-2">
-                                                        {value}
+                                                        {value.toString()}
                                                     </td>
                                                 ))}
                                             </tr>
