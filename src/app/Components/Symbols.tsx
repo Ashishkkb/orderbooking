@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import magnify from "./magnify.svg"
+import Image from 'next/image';
 
 interface Symbol {
     symbol: string;
@@ -13,6 +15,66 @@ interface Trade {
     // Add other properties as needed
 }
 
+interface SymbolDropdownProps {
+    symbols: Symbol[];
+    selectedSymbol: string | null;
+    setSelectedSymbol: (symbol: string) => void;
+    setSearchQuery: (query: string) => void;
+    setShowDropdown: (show: boolean) => void;
+    searchQuery: string;
+    searchDropdown: Symbol[];
+}
+
+const SymbolDropdown = ({
+    symbols,
+    selectedSymbol,
+    setSelectedSymbol,
+    setSearchQuery,
+    setShowDropdown,
+    searchQuery,
+    searchDropdown,
+}: SymbolDropdownProps) => (
+        <div className='relative'>
+            <div className="relative">
+                <input
+                    type="text"
+                    placeholder="Search symbol..."
+                    className="w-[1200px] p-2 pr-8 border border-gray-300 rounded"
+                    value={searchQuery}
+                    onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                        setShowDropdown(true);
+                    }}
+                />
+                <Image
+                    src={magnify}
+                    alt="magnification"
+                    className="absolute right-2 top-3 h-4 w-4 text-gray-500 cursor-pointer"
+                    onClick={() => {
+                        // Handle search action here
+                    }}
+                />
+            </div>
+            {searchDropdown && searchQuery.length > 0 && (
+                <div className="absolute bg-white rounded w-200 mt-1 max-h-400 overflow-y-scroll">
+                    {searchDropdown.map((symbol) => (
+                        <div
+                            key={symbol.symbol}
+                            className="p-2 cursor-pointer hover:bg-gray-200"
+                            onClick={() => {
+                                setSelectedSymbol(symbol.symbol);
+                                setSearchQuery('');
+                                setShowDropdown(false);
+                            }}
+                        >
+                            {symbol.symbol}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+);
+
 const BinanceSymbolList = () => {
     const [symbols, setSymbols] = useState<Symbol[]>([]);
     const [selectedSymbol, setSelectedSymbol] = useState<string | null>("ETHBTC");
@@ -22,18 +84,12 @@ const BinanceSymbolList = () => {
     const [searchDropdown, setSearchDropdown] = useState<Symbol[]>([]);
 
     // Fetch symbols from the API
+    // Fetch symbols from the API
     useEffect(() => {
         fetch('https://api.binance.com/api/v3/exchangeInfo')
             .then((response) => response.json())
             .then((data) => setSymbols(data.symbols));
     }, []);
-
-    // Filter symbols based on search query
-    useEffect(() => {
-        setSearchDropdown(symbols.filter(symbol =>
-            symbol.symbol.toLowerCase().includes(searchQuery.toLowerCase())
-        ));
-    }, [searchQuery, symbols]);
 
     // Fetch trade data for the selected symbol
     useEffect(() => {
@@ -44,9 +100,16 @@ const BinanceSymbolList = () => {
         }
     }, [selectedSymbol]);
 
-    const handleSymbolSelect = (symbol: string) => {
-        setSelectedSymbol(symbol);
-    };
+
+    // Filter symbols based on search query
+    useEffect(() => {
+        setSearchDropdown(symbols.filter(symbol =>
+            symbol.symbol.toLowerCase().includes(searchQuery.toLowerCase())
+        ));
+    }, [searchQuery, symbols]);
+
+    // Fetch trade data for the selected symbol
+
 
     const handleDownload = () => {
         // Convert trades to Excel format
@@ -70,61 +133,44 @@ const BinanceSymbolList = () => {
                     <div className='text-5xl font-bold'>
                         Order Book
                     </div>
+                    <div className='text-md font-medium text-gray-400'>
+                        Unlock the secrets of the blockchain with real-time cryptocurrency details at your<br /> fingertips. Stay informed, stay ahead in the world of digital assets
+                    </div>
                     <div className="flex justify-between mb-4">
-                        <div className='flex items-center relative'>
+                        <SymbolDropdown
+                            symbols={symbols}
+                            selectedSymbol={selectedSymbol}
+                            setSelectedSymbol={setSelectedSymbol}
+                            setSearchQuery={setSearchQuery}
+                            setShowDropdown={setShowDropdown}
+                            searchQuery={searchQuery}
+                            searchDropdown={searchDropdown}
+                        />
+                        <div className='flex gap-2'>
                             <select
                                 id="symbolSelect"
                                 value={selectedSymbol || ''}
-                                onChange={(e) => handleSymbolSelect(e.target.value)}
-                                className="w-[400px] p-2 border border-gray-300 rounded mr-2"
+                                onChange={(e) => setSelectedSymbol(e.target.value)}
+                                className="w-[200px] p-2 border border-gray-300 rounded mr-2 ml-2"
                             >
                                 <option value="">Select a symbol</option>
                                 {symbols.map((symbol) => (
                                     <option key={symbol.symbol} value={symbol.symbol}>{symbol.symbol}</option>
                                 ))}
                             </select>
-                            <div className='relative'>
-                                <input
-                                    type="text"
-                                    placeholder="Search symbol..."
-                                    className="w-200px p-2 border border-gray-300 rounded"
-                                    value={searchQuery}
-                                    onChange={(e) => {
-                                        setSearchQuery(e.target.value);
-                                        setShowDropdown(true);
-                                    }}
-                                />
-                                {showDropdown && searchQuery.length > 0 && (
-                                    <div className="absolute bg-white border border-gray-300 rounded w-200px mt-1 max-h-[400px] overflow-y-scroll">
-                                        {searchDropdown.map((symbol) => (
-                                            <div
-                                                key={symbol.symbol}
-                                                className="p-2 cursor-pointer hover:bg-gray-200"
-                                                onClick={() => {
-                                                    setSelectedSymbol(symbol.symbol);
-                                                    setSearchQuery('');
-                                                    setShowDropdown(false);
-                                                }}
-                                            >
-                                                {symbol.symbol}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
+                            <button onClick={handleDownload} className="p-2 bg-blue-500 text-white rounded mr-6">Download CSV</button>
                         </div>
-                        <button onClick={handleDownload} className="p-2 bg-blue-500 text-white rounded ">Download CSV</button>
-                    </div>
 
+                    </div>
                     {selectedSymbol && (
-                        <div className="overflow-y-auto max-h-[500px] hide-scrollbar">
+                        <div className="overflow-y-auto max-h-[450px] hide-scrollbar">
                             <h2 className="text-lg font-semibold mb-2">Trades for {selectedSymbol}</h2>
                             <table className="w-full border-collapse border border-gray-300">
                                 <thead>
                                     <tr>
                                         {trades.length > 0 &&
                                             Object.keys(trades[0]).map((key) => (
-                                                <th key={key} className="border border-gray-300 p-2">
+                                                <th key={key} className="border border-gray-300 p-2 text-left">
                                                     {key}
                                                 </th>
                                             ))}
@@ -132,7 +178,7 @@ const BinanceSymbolList = () => {
                                 </thead>
                                 <tbody>
                                     {trades.map((trade) => (
-                                        <tr key={trade.id}>
+                                        <tr key={trade.id} className="hover:bg-gray-100">
                                             {Object.values(trade).map((value, index) => (
                                                 <td key={index} className="border border-gray-300 p-2">
                                                     {value}
@@ -144,6 +190,7 @@ const BinanceSymbolList = () => {
                             </table>
                         </div>
                     )}
+
                 </div>
             </div>
         </div>
