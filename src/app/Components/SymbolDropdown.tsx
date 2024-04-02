@@ -32,7 +32,7 @@ const SymbolDropdown = ({
                 <input
                     type="text"
                     placeholder="Search symbol..."
-                    className="w-[1200px] p-2 pr-8 border border-gray-300 rounded"
+                    className="w-[800px] p-2 border border-gray-300 rounded"
                     value={searchQuery}
                     onChange={(e) => {
                         setSearchQuery(e.target.value);
