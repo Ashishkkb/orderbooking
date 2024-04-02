@@ -101,7 +101,7 @@ const BinanceSymbolList = () => {
                                     <option key={symbol.symbol} value={symbol.symbol}>{symbol.symbol}</option>
                                 ))}
                             </select>
-                            <button onClick={handleDownload} className="p-2 bg-[#e57173fb] text-white rounded mr-6">Download CSV</button>
+                            <button onClick={handleDownload} className="p-2 bg-[#e57173fb] text-white rounded mr-6 hover:bg-[#d76a6cfb]">Download CSV</button>
                         </div>
 
                     </div>

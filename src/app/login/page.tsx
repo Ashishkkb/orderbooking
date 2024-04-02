@@ -11,6 +11,12 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
+  const isLoggedIn = typeof window !== 'undefined' && !!localStorage.getItem('logintoken') || ""
+
+  if (isLoggedIn) {
+    router.push('/');
+  }
+
   const handleLogin = () => {
     // Perform login logic here, e.g., fetch a token from the server
     const token = 'loginisdone';
