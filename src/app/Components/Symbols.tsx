@@ -73,7 +73,7 @@ const BinanceSymbolList = () => {
         <div className="max-h-screen">
             <div className="flex justify-center">
                 <div className="glass max-w-[1600px] min-w-[95%] flex flex-col gap-6 pb-4">
-                    <div className='text-5xl font-bold'>
+                    <div className='text-4xl font-bold'>
                         Order Book
                     </div>
                     <div className='text-md font-medium text-gray-400'>

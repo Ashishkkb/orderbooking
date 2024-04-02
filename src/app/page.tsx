@@ -25,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-opacity-20 min-h-screen flex flex-col gap-10">
+    <div className="bg-opacity-20 min-h-screen flex flex-col gap-2">
       <nav className="flex justify-end items-center py-4 px-8  bg-opacity-50 backdrop-blur-md">
         <button
           onClick={handleLogout}
