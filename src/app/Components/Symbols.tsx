@@ -105,33 +105,36 @@ const BinanceSymbolList = () => {
                         </div>
 
                     </div>
+
                     {selectedSymbol && (
-                        <div className="overflow-y-auto max-h-[450px] hide-scrollbar">
-                            <h2 className="text-lg font-semibold mb-2">Trades for {selectedSymbol}</h2>
-                            <table className="w-full border-collapse border border-gray-300">
-                                <thead>
-                                    <tr>
-                                        {trades.length > 0 &&
-                                            Object.keys(trades[0]).map((key) => (
-                                                <th key={key} className="border border-gray-300 p-2 text-left text-white bg-[#ed787a]">
-                                                    {key}
-                                                </th>
-                                            ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {trades.map((trade) => (
-                                        <tr key={trade.id} className="hover:bg-gray-100">
-                                            {Object.values(trade).map((value, index) => (
-                                                <td key={index} className="border border-gray-300 p-2">
-                                                    {value}
-                                                </td>
-                                            ))}
+                        <>
+                            <h2 className="text-lg font-semibold">Trades for {selectedSymbol}</h2>
+                            <div className="overflow-y-auto max-h-[60vh] pr-2 -mt-4">
+                                <table className="w-full border-collapse border border-gray-300">
+                                    <thead>
+                                        <tr>
+                                            {trades.length > 0 &&
+                                                Object.keys(trades[0]).map((key) => (
+                                                    <th key={key} className="border border-gray-300 p-2 text-left text-white bg-[#ed787a]">
+                                                        {key}
+                                                    </th>
+                                                ))}
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+                                    <tbody>
+                                        {trades.map((trade) => (
+                                            <tr key={trade.id} className="hover:bg-gray-100">
+                                                {Object.values(trade).map((value, index) => (
+                                                    <td key={index} className="border border-gray-300 p-2">
+                                                        {value}
+                                                    </td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </>
                     )}
 
                 </div>
