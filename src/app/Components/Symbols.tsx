@@ -109,7 +109,7 @@ const BinanceSymbolList = () => {
                     {selectedSymbol && (
                         <>
                             <h2 className="text-lg font-semibold">Trades for {selectedSymbol}</h2>
-                            <div className="overflow-y-auto max-h-[60vh] pr-2 -mt-4">
+                            <div className="overflow-y-auto max-h-[55vh] pr-2 -mt-4">
                                 <table className="w-full border-collapse border border-gray-300">
                                     <thead>
                                         <tr>
