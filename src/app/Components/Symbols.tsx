@@ -76,8 +76,8 @@ const BinanceSymbolList = () => {
                     <div className='text-4xl font-bold'>
                         Order Book
                     </div>
-                    <div className='text-md font-medium text-gray-400'>
-                        Unlock the secrets of the blockchain with real-time cryptocurrency details at your<br /> fingertips. Stay informed, stay ahead in the world of digital assets
+                    <div className='text-sm font-medium text-gray-400'>
+                        Unlock the secrets of the blockchain with real-time cryptocurrency details at your fingertips.
                     </div>
                     <div className="flex justify-between mb-4">
                         <SymbolDropdown
